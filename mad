@@ -1,0 +1,45 @@
+package com.example.myapplication4mt19cs067exp3;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+public class MainActivity2 extends AppCompatActivity {
+    EditText un1;
+    EditText pwd1;
+    Button b2;
+    String registered_uname,registered_pwd;
+    String entered_uname_sign_in,entered_pwd_sign_in;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main2);
+        un1=(EditText)findViewById(R.id.username2);
+        pwd1=(EditText)findViewById(R.id.password2);
+        b2=(Button)findViewById(R.id.button2);
+
+        Bundle extras = getIntent().getExtras();
+        registered_uname=extras.getString("un");
+        registered_pwd=extras.getString("pwd");
+
+        b2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                entered_uname_sign_in=un1.getText().toString();
+                entered_pwd_sign_in=pwd1.getText().toString();
+                if(entered_uname_sign_in.equals(registered_uname)&&(entered_pwd_sign_in.equals(registered_pwd))){
+                    Toast.makeText(MainActivity2.this, "valid", Toast.LENGTH_SHORT).show();
+                    System.out.println("Valid User and Successful Sign In");
+                }
+                else{
+                    Toast.makeText(MainActivity2.this, "Enter Valid Credentials", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+}
